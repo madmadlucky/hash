@@ -1,0 +1,73 @@
+.hubLayout{
+    .navDiv{
+        position:relative;
+        width:100%;
+        :global{
+            .zoomButton{
+                display: flex;
+                align-items:center;
+                gap:18px;
+                position:absolute;
+                left:50%; 
+                top:50%;
+                margin-left:275px;
+                transform:translate(0,-50%);
+                button{
+                    display: block;
+                    position:relative;
+                    width:10px;
+                    height:10px;
+                    border:0;
+                    background:none;
+                    cursor:pointer;
+                    &.plus,
+                    &.minus{
+                        background-position:center center;
+                        background-repeat:no-repeat;
+                        background-size:10px;
+                    }
+                    &.plus{
+                        background-image:url(/image/hub/bg_plus.svg)
+                    }
+                    &.minus{
+                        background-image:url(/image/hub/bg_minus.svg)
+                    }
+                }
+            }
+        }
+    }
+    :global{        
+        .section2_1{
+            a{
+                position:absolute;
+                top:auto;
+                bottom:28px;
+                transform: none;
+            }
+        }
+    }
+}
+
+@media (max-width:639px){
+    .hubLayout{
+        .navDiv{
+            :global{
+                .zoomButton{
+                    left:auto;
+                    right:10px;
+                    margin:0;
+                }
+            }
+        }
+    }
+    :global{        
+        .section2_1{
+            a{
+                width:48%;
+                u{
+                    font-size:3.3vw;
+                }
+            }
+        }
+    }
+}
