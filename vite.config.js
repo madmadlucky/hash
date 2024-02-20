@@ -29,4 +29,5 @@ export default defineConfig({
       "@": "/src",
     },
   },
+  base: '/hash/'
 });
