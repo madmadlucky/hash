@@ -44,7 +44,7 @@ export const config2 = [
     id: 1,
     button: {
       textKR: "미로 찾기 게임 자세히 보기 >",
-      textEN: "Detailed Look at The Maze",
+      textEN: "View Maze",
       to: "/maze",
     },
   },
@@ -69,7 +69,7 @@ export const config2 = [
   { 
     id: 20,
     adButton:{
-      href:'https://www.naver.com'
+      href:'http://2024.projecthashtag.net/'
     }
   },
 ];

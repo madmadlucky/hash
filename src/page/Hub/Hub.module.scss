@@ -6,25 +6,26 @@
             .zoomButton{
                 display: flex;
                 align-items:center;
-                gap:18px;
+                gap:6px;
                 position:absolute;
                 left:50%; 
                 top:50%;
-                margin-left:275px;
+                margin-left:18.3vh;
                 transform:translate(0,-50%);
                 button{
                     display: block;
                     position:relative;
-                    width:10px;
-                    height:10px;
+                    width:40px;
+                    height:40px;
                     border:0;
                     background:none;
                     cursor:pointer;
                     &.plus,
                     &.minus{
+                        opacity:.5;
                         background-position:center center;
                         background-repeat:no-repeat;
-                        background-size:10px;
+                        background-size:20px;
                     }
                     &.plus{
                         background-image:url(/image/hub/bg_plus.svg)
@@ -48,24 +49,37 @@
     }
 }
 
-@media (max-width:639px){
+@media (max-width:991px){
+    .hubLayout{
+        :global{        
+            .section2_1{
+                a{
+                    bottom:18px;
+                    transform: scale(.8);
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width:575px){
     .hubLayout{
         .navDiv{
             :global{
                 .zoomButton{
                     left:auto;
-                    right:10px;
-                    margin:0;
+                    right:5px;
+                    margin-left:0;
                 }
             }
         }
-    }
-    :global{        
-        .section2_1{
-            a{
-                width:48%;
-                u{
-                    font-size:3.3vw;
+        :global{
+            .section2_1{
+                a{
+                    left:auto;
+                    right:-9px;
+                    bottom:10px;
                 }
             }
         }

@@ -1,15 +1,12 @@
 import React from 'react';
-import {
-  LinkCTA,
-  LinkKR,
-  LinkENG,
-} from "@/page/Hub/styles";
 import AnswerModal from "@/component/AnswerModal";
 
 export default () => { 
     return (
-        <div style={{padding:'60px 0', textAlign:'center', background:'#F3F6FF'}}>
-            <img src={'/image/maze/maze_pc.png'} alt='' style={{display:'block', width:'100%', maxWidth:960, margin:'0 auto 50px'}} /> 
+        <div style={{padding:'60px 0', background:'#F3F6FF', textAlign:'center'}}>
+            <div style={{margin:'0 auto', maxWidth:'880px', width:'100%', paddingBottom:'50px'}}>
+                <img src={'/image/maze/maze_pc.png'} alt='' style={{display:'block', width:'calc(100% + 9.2vw)'}} /> 
+            </div>
             <AnswerModal type='maze' />
         </div>
     );

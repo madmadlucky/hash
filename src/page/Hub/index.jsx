@@ -39,14 +39,14 @@ const configSerial = (serial)=>{
     }
     case '2':{
       return config2;
-    }
+    } 
   }
 }
 
 export default () => {
-  const theme = useTheme();
+  const theme = useTheme(); 
 
-  const prevButtonRef = useRef(null);
+  const prevButtonRef = useRef(null); 
   const nextButtonRef = useRef(null);
 
   const [showSwiperDesktop, setShowSwiperDesktop] = useState(false);
@@ -57,7 +57,7 @@ export default () => {
 
   const desktopConfig = useMemo(() => {
     const oldArray = [...config];
-    const newArray = [];
+    const newArray = []; 
 
     while (oldArray.length) {
       if (newArray.length === 0 || oldArray.length === 1) {
@@ -70,12 +70,12 @@ export default () => {
       }
     }
 
-    return newArray;
+    return newArray; 
   }, [config]);
 
   useEffect(() => {
     const handleScroll = throttle((e) => {
-      const direction = e.deltaY > 0;
+      const direction = e.deltaY > 0; 
 
       if (Math.abs(e.deltaY) < 4) return;
 
@@ -98,6 +98,27 @@ export default () => {
     const target = document.querySelector(`.swiper-slide-active .${symbol}`);
     target.click();
   }
+
+  const os = navigator.userAgent.toLowerCase();
+  const [isMobile, setIsMobile] = useState();
+
+  useEffect(()=>{
+    setIsMobile(os.indexOf('iphone') > -1 || os.indexOf('android') > -1);
+  },[]);
+
+  const [isWide, setIsWide] = useState(false);
+
+  useEffect(()=>{
+    const checkWidth = ()=>{
+      if(window.innerWidth <= 992){
+        setIsWide(false);
+      }else{
+        setIsWide(false);
+      }
+    }
+    window.addEventListener('resize',checkWidth);
+    return ()=> window.removeEventListener('resize',checkWidth);
+  },[]);
 
   return (
     <Section
@@ -182,6 +203,13 @@ export default () => {
                 prevEl: prevButtonRef.current || "#swiper-nav-prev",
                 nextEl: nextButtonRef.current || "#swiper-nav-next",
               }}
+              onSlideChangeTransitionEnd={(e)=>{
+                if(e.isBeginning || e.isEnd){
+                  setIsWide(false)
+                }else{
+                  setIsWide(true)
+                }
+              }}
             >
               {desktopConfig.map((items, i) => (
                 <SwiperSlide key={`slide-desktop-${i}`} className={`section${params.serial}_${i+1}`}>
@@ -199,7 +227,6 @@ export default () => {
                     <DesktopImgWrapper>
                       {items.map((item, j) => {
                         const { id, button, adButton } = item;
-
                         return (
                           <Fragment key={`${i}-${j}`}>
                             <ImgDiv>
@@ -215,7 +242,7 @@ export default () => {
                                 </LinkCTA>
                               )}
                               {adButton && (
-                                <a href={adButton.href} style={{position:'absolute', left:'50%', top:'20px', width:'500px', height:'400px', transform:'translate(-50%,0)'}}/>
+                                <a href={adButton.href} style={{position:'absolute', left:'50%', top:'20px', width:'500px', height:'400px', transform:'translate(-50%,0)'}} target={'_blank'}/>
                               )}
                             </ImgDiv>
                           </Fragment>
@@ -238,10 +265,22 @@ export default () => {
           <Button id="swiper-nav-next" ref={nextButtonRef}>
             <ArrowRightIcon aria-label="Next" />
           </Button>
-          <div className="zoomButton">
-            <button onClick={()=>control('minus')} className="minus"/>
-            <button onClick={()=>control('plus')} className="plus"/>
-          </div>
+          {!isMobile && (
+            <>
+              <Visible xs sm md>
+                  <div className="zoomButton">
+                    <button onClick={()=>control('minus')} className="minus"/>
+                    <button onClick={()=>control('plus')} className="plus"/>
+                  </div>
+              </Visible>
+              <Visible lg xl xxl>
+                  <div className="zoomButton" style={{marginLeft:isWide ? '45.9vh' : undefined}}>
+                    <button onClick={()=>control('minus')} className="minus"/>
+                    <button onClick={()=>control('plus')} className="plus"/>
+                  </div>
+              </Visible>
+            </>
+          )}
         </NavDiv>
       </HubLayout>
     </Section>

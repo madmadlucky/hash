@@ -30,7 +30,7 @@ function App() {
         }}
       >
         <SwitchTransition transitionKey={location.pathname} timeout={500}>
-          <AppLayout $pathname={location.pathname}>
+          <AppLayout $pathname={location.pathname} style={location.pathname.indexOf('maze') > -1 ? {background:'rgb(243, 246, 255)'} : {}}>
             <Nav />
 
             <Main>

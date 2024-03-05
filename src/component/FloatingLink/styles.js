@@ -12,9 +12,10 @@ export const LinkLayout = styled(motion.div)`
 
 export const Img = styled.img`
   display: block;
-  width: 100px;
+  width: 150px;
 
   ${MediaAbove("lg")} {
-    width: 200px;
+    // width: 200px;
+    width: 300px;
   }
 `;
